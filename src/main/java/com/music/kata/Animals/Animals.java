@@ -5,6 +5,9 @@ public abstract class Animals {
     protected String name;
     protected String song;
     protected boolean isSinging = false;
+    protected boolean sing = true;
+    protected boolean shutUp = false;
+
 
     public Animals(String name, String sing) {
         this.name = name;
@@ -25,6 +28,7 @@ public abstract class Animals {
     }
 
     public boolean isSinging() {
+
         return isSinging;
     }
 
@@ -40,6 +44,14 @@ public abstract class Animals {
         if(this.isSinging){
             return "The " + this.name + " is singing " + this.song;
         } return "The " + this.name + " is not singing";
+    }
+
+    protected void sing() {
+        this.sing = true;
+    }
+
+    protected void shutUp() {
+        this.shutUp = false;
     }
 }
 

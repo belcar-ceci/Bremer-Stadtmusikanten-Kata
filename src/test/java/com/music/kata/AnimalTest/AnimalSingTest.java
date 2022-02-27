@@ -1,14 +1,17 @@
 package com.music.kata.AnimalTest;
 
+import com.music.kata.Animals.Animals;
 import com.music.kata.Animals.Cat;
+import com.music.kata.Animals.Director;
 import com.music.kata.Animals.Donkey;
 import org.junit.jupiter.api.Test;
 
 
+import java.util.ArrayList;
+
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AnimalSingTest {
     @Test
@@ -60,8 +63,31 @@ public class AnimalSingTest {
         Donkey donkey = new Donkey("Homero", "ioooiooo");
 
         assertThat(donkey.message(), equalTo("The donkey Homero isn't singing ioooiooo"));
-
-
     }
+    @Test
+    void directorOrderSing(){
+        ArrayList<Animals> choir = new ArrayList<>();
+        choir.add(new Cat("Felix", "prrr"));
+        choir.add(new Donkey("Homero", "ioooioo"));
+
+        Director director = new Director(choir);
+        director.startSinging();
+
+        assertEquals("The cat Felix isn't singing prrr", choir.get(0).message());
+        assertEquals("The donkey Homero isn't singing ioooioo", choir.get(1).message());
+    }
+   @Test
+    void directorOrderSilence(){
+        ArrayList<Animals> choir = new ArrayList<>();
+        choir.add(new Cat("Felix", "prrr"));
+        choir.add(new Donkey("Homero", "does not shut up"));
+
+        Director director = new Director(choir);
+        director.startSinging();
+        director.stopSinging();
+
+        assertEquals("The cat Felix isn't singing prrr", choir.get(0).message());
+        assertEquals("The donkey Homero isn't singing does not shut up", choir.get(1).message());
+   }
 
 }
