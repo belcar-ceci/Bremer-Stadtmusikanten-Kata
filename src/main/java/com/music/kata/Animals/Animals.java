@@ -45,11 +45,11 @@ public abstract class Animals {
             return "The " + this.name + " is singing " + this.song;
         } return "The " + this.name + " is not singing";
     }
-
+//Director-ordena-cantar
     protected void sing() {
         this.sing = true;
     }
-
+//Director-ordena-callar.
     protected void shutUp() {
         this.shutUp = false;
     }
